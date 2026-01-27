@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🎓 UNI System</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li id="btn-home" class=""><i class="fas fa-home"></i> Home</li>
+                    <li id="btn-students"><i class="fas fa-user-graduate"></i> Students</li>
+                    <li id="btn-courses"><i class="fas fa-book"></i> Courses</li>
+                    <li id="btn-instructors"><i class="fas fa-chalkboard-teacher"></i> Instructors</li>
+                    <li id="btn-employees"><i class="fas fa-users-cog"></i> Employees</li> 
+                </ul>
+            </nav>
+            <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </aside>
+
+        <main class="main-content">
+            
+            <header>
+                <h2 id="page-title">Dashboard Overview</h2>
+                <div class="user-info">
+                    <span>Welcome, <b id="user-name">User</b></span>
+                </div>
+            </header>
+
+            <div id="app-root">
+                <div class="welcome-banner">
+                    <h3>Welcome to the Student Affairs System</h3>
+                    <p>Select a category from the sidebar to manage records.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script type="module" src="home.js"></script>
+</body>
+</html>
