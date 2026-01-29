@@ -92,6 +92,89 @@ th { background-color: #2b3699; }
     text-align: left;
 }
 
+/* Table Header Sorting Styles - MOVED TO TH */
+.styled-table thead th {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    padding: 12px 30px 12px 15px; /* Extra padding on right for arrows */
+}
+
+.styled-table thead th:last-child {
+    cursor: default; /* ACTIONS column shouldn't be sortable */
+    padding-right: 15px;
+}
+
+/* Up Arrow */
+.styled-table thead th::before {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) translateY(-5px);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 6px solid rgba(255, 255, 255, 0.4);
+    opacity: 0.5;
+}
+
+/* Down Arrow */
+.styled-table thead th::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) translateY(1px);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid rgba(255, 255, 255, 0.4);
+    opacity: 0.5;
+}
+
+/* Remove arrows from ACTIONS column */
+.styled-table thead th:last-child::after,
+.styled-table thead th:last-child::before {
+    display: none;
+}
+
+/* Hover effect */
+.styled-table thead th:not(:last-child):hover::after,
+.styled-table thead th:not(:last-child):hover::before {
+    opacity: 1;
+    border-bottom-color: rgba(255, 255, 255, 0.8);
+    border-top-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Active sorting states - Ascending (up arrow active) */
+.styled-table thead th.sort-asc::before {
+    opacity: 1;
+    border-bottom-color: #fff; /* White for active */
+}
+
+.styled-table thead th.sort-asc::after {
+    opacity: 0.3;
+}
+
+/* Active sorting states - Descending (down arrow active) */
+.styled-table thead th.sort-desc::after {
+    opacity: 1;
+    border-top-color: #fff; /* White for active */
+}
+
+.styled-table thead th.sort-desc::before {
+    opacity: 0.3;
+}
+
+/* Optional: Add transition for smooth effect */
+.styled-table thead th::after,
+.styled-table thead th::before {
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
 .styled-table th, .styled-table td {
     padding: 12px 15px;
     border-bottom: 1px solid #dddddd;
