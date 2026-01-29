@@ -4,7 +4,7 @@
       "id": "1",
       "name": "Admin User",
       "email": "admin@iti.gov.eg",
-      "password": "123", 
+      "password": "123",
       "role": "admin"
     },
     {
@@ -62,17 +62,26 @@
       "name": "System Analysis",
       "credits": 2,
       "instructorId": "102"
+    },
+    {
+      "id": "24e2",
+      "name": "Database",
+      "credits": 3,
+      "instructorId": "101"
     }
   ],
   "students": [
     {
       "id": "2024001",
-      "name": "Eman Fathi",
-      "email": "eman@gmail.com",
-      "phone": "0100000001",
-      "gpa": 3.8,
+      "name": "Ali Gamal",
+      "email": "Aligamal5@gmail.com",
+      "phone": "01001511012",
+      "gpa": "3.78",
       "enrollmentDate": "2023-09-15",
-      "enrolledCourses": ["C-01", "C-03"]
+      "enrolledCourses": [
+        "C-01",
+        "C-03"
+      ]
     },
     {
       "id": "2024002",
@@ -81,7 +90,9 @@
       "phone": "0100000002",
       "gpa": 3.2,
       "enrollmentDate": "2023-09-16",
-      "enrolledCourses": ["C-02"]
+      "enrolledCourses": [
+        "C-02"
+      ]
     },
     {
       "id": "2024003",
@@ -90,16 +101,11 @@
       "phone": "0100000003",
       "gpa": 3.9,
       "enrollmentDate": "2024-01-10",
-      "enrolledCourses": ["C-01", "C-02", "C-04"]
-    },
-    {
-      "id": "2024004",
-      "name": "Salma Ali",
-      "email": "salma@gmail.com",
-      "phone": "0100000004",
-      "gpa": 2.5,
-      "enrollmentDate": "2023-09-15",
-      "enrolledCourses": []
+      "enrolledCourses": [
+        "C-01",
+        "C-02",
+        "C-04"
+      ]
     }
   ]
 }

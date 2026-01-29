@@ -100,28 +100,64 @@ function sortTable(table, columnIndex, order) {
     rows.forEach(row => tbody.appendChild(row));
 }
 
+//searching
+// Search Functionality
+function initTableSearch() {
+    const searchInput = document.getElementById('table-search');
+    const table = document.querySelector('.styled-table');
+    
+    // Safety check: if no input or table, stop
+    if (!searchInput || !table) return;
 
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    searchInput.addEventListener('keyup', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+
+        rows.forEach(row => {
+            // 1. Get text from all columns EXCEPT the last one (Actions)
+            const cells = Array.from(row.querySelectorAll('td:not(:last-child)'));
+            const rowText = cells.map(td => td.textContent).join(' ').toLowerCase();
+
+            // 2. Toggle visibility
+            if (rowText.includes(searchTerm)) {
+                row.style.display = ""; // Show
+            } else {
+                row.style.display = "none"; // Hide
+            }
+        });
+    });
+}
 //render
 function renderTable(data, title) {
     const appRoot = document.getElementById('app-root');
-    if(title==="home"){
-        appRoot.innerHTML=`<div class="welcome-banner">
-                    <h3>Welcome to the Student Affairs System</h3>
-                    <p>Select a category from the sidebar to manage records.</p>
-                </div>`;
-                return;
+    
+    if(title === "home"){
+        appRoot.innerHTML = `<div class="welcome-banner">
+            <h3>Welcome to the Student Affairs System</h3>
+            <p>Select a category from the sidebar to manage records.</p>
+        </div>`;
+        return;
     }
 
     if (!data || data.length === 0) {
         appRoot.innerHTML = `<div class="alert">No ${title} found.</div>`;
         return;
     }
+    
     const columns = Object.keys(data[0]);
 
+    // --- CHANGED SECTION START ---
     let tableHTML = `
         <div class="content-header">
             <h2>${title} List</h2>
-            <button class="btn-add">+ Add New ${title.slice(0, -1)}</button> </div>
+            <div class="header-actions">
+                <input type="text" id="table-search" placeholder="Search ${title}..." class="search-input">
+                
+                <button class="btn-add">+ Add New ${title.slice(0, -1)}</button>
+            </div>
+        </div>
         
         <table class="styled-table">
             <thead>
@@ -143,10 +179,15 @@ function renderTable(data, title) {
             </tbody>
         </table>
     `;
+    // --- CHANGED SECTION END ---
 
     appRoot.innerHTML = tableHTML;
+    
+    // Initialize BOTH features now
     initTableSorting();
+    initTableSearch(); // <--- Don't forget to call this!
 }
+
 
 let studentbtn = document.getElementById("btn-students");
 let coursesbtn = document.getElementById("btn-courses");
@@ -201,3 +242,283 @@ try {
 homebtn.addEventListener('click',()=>{
     renderTable(0,"home");
 })
+
+//delete
+// --- DELETE FUNCTIONALITY ---
+
+const appRoot = document.getElementById('app-root');
+
+appRoot.addEventListener('click', async (e) => {
+    
+    // 1. Check if the clicked element is a Delete Button
+    if (e.target.classList.contains('btn-delete')) {
+        
+        // 2. Get the ID from the button
+        const id = e.target.getAttribute('data-id');
+        
+        // 3. Find out which Page we are on by reading the <h2> title
+        // Example: "Students List" -> We split it to get just "Students"
+        const pageTitle = document.querySelector('.content-header h2').innerText;
+        
+        // 4. Confirm Action
+        const confirmDelete = confirm(`Are you sure you want to delete ID: ${id} from ${pageTitle}?`);
+        if (!confirmDelete) return;
+
+        try {
+            // 5. Decide which Class to use based on the Title
+            let manager = null;
+
+            if (pageTitle.toLowerCase().includes("student")) {
+                manager = new Student();
+            } 
+            else if (pageTitle.toLowerCase().includes("course")) {
+                manager = new Course();
+            } 
+            else if (pageTitle.toLowerCase().includes("instructor")) {
+                manager = new Instructor();
+            } 
+            else if (pageTitle.toLowerCase().includes("employee")) {
+                manager = new Employee();
+            }
+
+            // 6. Perform the Delete
+            if (manager) {
+               console.log(await manager.delete(id)) ;
+                e.target.closest('tr').remove();
+                alert("Deleted successfully!");
+            }
+
+        } catch (error) {
+            console.error(error);
+            alert("Error deleting record.");
+        }
+    }
+});
+
+//render edit
+function renderEditForm(data, manager, type) {
+    const appRoot = document.getElementById('app-root');
+    
+    // 1. Filter out keys we don't want to edit (like "id" or complex arrays)
+    // For simplicity, we edit everything except ID.
+    const fields = Object.keys(data).filter(key => key !== 'id' && key !== 'enrolledCourses' && key !== 'instructor');
+
+    // 2. Build the Form HTML
+    let formHTML = `
+        <div class="form-container">
+            <h2>Edit ${type.toUpperCase()} (ID: ${data.id})</h2>
+            <form id="edit-form">
+                ${fields.map(key => `
+                    <div class="form-group">
+                        <label>${key.toUpperCase()}</label>
+                        <input type="text" name="${key}" value="${data[key]}" required>
+                    </div>
+                `).join('')}
+                
+                <div class="form-actions">
+                    <button type="submit" class="save-btn">💾 Save Changes</button>
+                    <button type="button" class="cancel-btn">❌ Cancel</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+    appRoot.innerHTML = formHTML;
+
+    // 3. Add Listeners for Save/Cancel
+    
+    // CANCEL: Just go back to the table
+    document.querySelector('.cancel-btn').addEventListener('click', () => {
+        // Trigger the sidebar button click to reload the table
+        document.getElementById(`btn-${type}s`).click(); 
+    });
+
+    // SAVE: Collect data and send PUT request
+    document.getElementById('edit-form').addEventListener('submit', async (e) => {
+        e.preventDefault(); // Stop reload
+        
+        // Harvest the data from inputs
+        const formData = new FormData(e.target);
+        const updatedObject = {};
+        
+        // Convert FormData to JSON object
+        formData.forEach((value, key) => {
+            updatedObject[key] = value;
+        });
+
+        try {
+            // Keep the old ID and arrays (like enrolledCourses) that were hidden
+            // spread syntax merges old data with new data
+            const finalData = { ...data, ...updatedObject };
+            
+            await manager.edit(data.id, finalData);
+            
+            alert("Updated Successfully!");
+            // Go back to the list
+            document.getElementById(`btn-${type}s`).click();
+            
+        } catch (error) {
+            console.error(error);
+            alert("Update Failed.");
+        }
+    });
+}
+
+//edit
+// --- EDIT FUNCTIONALITY ---
+
+appRoot.addEventListener('click', async (e) => {
+    
+    // 1. Check if the clicked element is an Edit Button
+    if (e.target.classList.contains('btn-edit')) {
+        
+        const id = e.target.getAttribute('data-id');
+        const pageTitle = document.querySelector('.content-header h2').innerText; // "Students List"
+
+        // 2. Decide Context (Same as Delete)
+        let manager = null;
+        let type = "";
+
+        if (pageTitle.toLowerCase().includes("student")) {
+            manager = new Student();
+            type = "student";
+        } else if (pageTitle.toLowerCase().includes("course")) {
+            manager = new Course();
+            type = "course";
+        } else if (pageTitle.toLowerCase().includes("instructor")) {
+            manager = new Instructor();
+            type = "instructor";
+        } else if (pageTitle.toLowerCase().includes("employee")) {
+            manager = new Employee();
+            type = "employee";
+        }
+        
+
+        if (manager) {
+            // 3. We need to fetch the SINGLE item to fill the inputs
+            try {
+                const response = await fetch(`${manager.Link}/${id}`);
+                const data = await response.json();
+                
+                renderEditForm(data, manager, type);
+                
+            } catch (error) {
+                console.error(error);
+                alert("Failed to load data for editing.");
+            }
+        }
+
+    }
+    if (e.target.classList.contains('btn-add')) {
+        
+        // 2. Identify Context (Student? Course?)
+        const pageTitle = document.querySelector('.content-header h2').innerText; // e.g. "Students List"
+        let type = "";
+        let manager = null;
+
+        if (pageTitle.toLowerCase().includes("student")) {
+            type = "student";
+            manager = new Student();
+        } else if (pageTitle.toLowerCase().includes("course")) {
+            type = "course";
+            manager = new Course();
+        } else if (pageTitle.toLowerCase().includes("instructor")) {
+            type = "instructor";
+            manager = new Instructor();
+        } else if (pageTitle.toLowerCase().includes("employee")) {
+            type = "employee";
+            manager = new Employee();
+        }
+
+        // 3. Render the Empty Form
+        if (type && manager) {
+            renderAddForm(type, manager);
+        }
+    }
+});
+
+//add render
+function renderAddForm(type, manager) {
+    const appRoot = document.getElementById('app-root');
+    
+    // 1. Get the list of fields from our schema
+    const fields = schemas[type]; 
+
+    // 2. Build the Form HTML (Inputs are empty value="")
+    let formHTML = `
+        <div class="form-container">
+            <h2>Add New ${type.toUpperCase()}</h2>
+            <form id="add-form">
+                ${fields.map(key => `
+                    <div class="form-group">
+                        <label>${key.toUpperCase()}</label>
+                        <input type="${key === 'email' ? 'email' : 'text'}" 
+                               name="${key}" 
+                               placeholder="Enter ${key}" 
+                               required>
+                    </div>
+                `).join('')}
+                
+                <div class="form-actions">
+                    <button type="submit" class="save-btn">✅ Create</button>
+                    <button type="button" class="cancel-btn">❌ Cancel</button>
+                </div>
+            </form>
+        </div>
+    `;
+
+    appRoot.innerHTML = formHTML;
+
+    // 3. CANCEL Listener
+    document.querySelector('.cancel-btn').addEventListener('click', () => {
+        // Go back to the list by simulating a click on the sidebar
+        document.getElementById(`btn-${type}s`).click(); 
+    });
+
+    // 4. SUBMIT Listener (The Create Logic)
+    document.getElementById('add-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Harvest data
+        const formData = new FormData(e.target);
+        const newObject = {};
+        
+        formData.forEach((value, key) => {
+            // Convert numbers like GPA or Credits to real numbers, not strings
+            if (key === 'gpa' || key === 'credits') {
+                newObject[key] = Number(value);
+            } else {
+                newObject[key] = value;
+            }
+        });
+
+        // Add empty enrolledCourses array if it's a student (Requirement)
+        if (type === 'student') {
+            newObject.enrolledCourses = [];
+        }
+
+        try {
+            // CALL POST (Create)
+            await manager.post(newObject);
+            
+            alert("Created Successfully!");
+            document.getElementById(`btn-${type}s`).click(); // Go back to list
+            
+        } catch (error) {
+            console.error(error);
+            alert("Failed to create record.");
+        }
+    });
+}
+// Data Structure for Adding New Items
+const schemas = {
+    student: ["name", "email", "phone", "gpa", "enrollmentDate"],
+    course: ["name", "credits", "instructorId"],
+    instructor: ["name", "email", "phone", "department"],
+    employee: ["name", "email", "password", "role"]
+};
+
+
+
+
+
