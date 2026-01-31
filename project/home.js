@@ -194,54 +194,54 @@ let coursesbtn = document.getElementById("btn-courses");
 let instructorsbtn = document.getElementById("btn-instructors");
 let employeesbtn = document.getElementById("btn-employees");
 let homebtn=document.getElementById("btn-home");
-studentbtn.addEventListener('click', async () => {
-try {
-        let student = new Student();
-        let response = await student.getStudentsWithCourseNames();
-        renderTable(response, "Students");
-    } catch (error) {
-        console.error(error);
-        appRoot.innerHTML = '<div class="error">Failed to load data. Is the server running?</div>';
-    }
-});
+// studentbtn.addEventListener('click', async () => {
+// try {
+//         let student = new Student();
+//         let response = await student.getStudentsWithCourseNames();
+//         renderTable(response, "Students");
+//     } catch (error) {
+//         console.error(error);
+//         appRoot.innerHTML = '<div class="error">Failed to load data. Is the server running?</div>';
+//     }
+// });
 
 
-coursesbtn.addEventListener('click', async () => {
-try {
-        let course = new Course();
-        let response=await course.get();
-        renderTable(response, "Courses");
-    } catch (error) {
-        console.error(error);
-        appRoot.innerHTML = '<div class="error">Failed to load data. Is the server running?</div>';
-    }
-});
+// coursesbtn.addEventListener('click', async () => {
+// try {
+//         let course = new Course();
+//         let response=await course.get();
+//         renderTable(response, "Courses");
+//     } catch (error) {
+//         console.error(error);
+//         appRoot.innerHTML = '<div class="error">Failed to load data. Is the server running?</div>';
+//     }
+// });
 
-instructorsbtn.addEventListener('click', async () => {
-try {
-        let instructor = new Instructor();
-        let response = await instructor.get()
-        renderTable(response, "instructors");
-    } catch (error) {
-        console.error(error);
-        appRoot.innerHTML = '<div class="error">Failed to load data. Is the server running?</div>';
-    }
-});
+// instructorsbtn.addEventListener('click', async () => {
+// try {
+//         let instructor = new Instructor();
+//         let response = await instructor.get()
+//         renderTable(response, "instructors");
+//     } catch (error) {
+//         console.error(error);
+//         appRoot.innerHTML = '<div class="error">Failed to load data. Is the server running?</div>';
+//     }
+// });
 
-employeesbtn.addEventListener('click', async () => {
-try {
-        let employee = new Employee();
-        let response = await employee.get()
-        renderTable(response, "employees");
-    } catch (error) {
-        console.error(error);
-        appRoot.innerHTML = '<div class="error">Failed to load data. Is the server running?</div>';
-    }
-});
+// employeesbtn.addEventListener('click', async () => {
+// try {
+//         let employee = new Employee();
+//         let response = await employee.get()
+//         renderTable(response, "employees");
+//     } catch (error) {
+//         console.error(error);
+//         appRoot.innerHTML = '<div class="error">Failed to load data. Is the server running?</div>';
+//     }
+// });
 
-homebtn.addEventListener('click',()=>{
-    renderTable(0,"home");
-})
+// homebtn.addEventListener('click',()=>{
+//     renderTable(0,"home");
+// })
 
 //delete
 // --- DELETE FUNCTIONALITY ---
@@ -409,32 +409,7 @@ appRoot.addEventListener('click', async (e) => {
         }
 
     }
-    if (e.target.classList.contains('btn-add')) {
-        
-        // 2. Identify Context (Student? Course?)
-        const pageTitle = document.querySelector('.content-header h2').innerText; // e.g. "Students List"
-        let type = "";
-        let manager = null;
-
-        if (pageTitle.toLowerCase().includes("student")) {
-            type = "student";
-            manager = new Student();
-        } else if (pageTitle.toLowerCase().includes("course")) {
-            type = "course";
-            manager = new Course();
-        } else if (pageTitle.toLowerCase().includes("instructor")) {
-            type = "instructor";
-            manager = new Instructor();
-        } else if (pageTitle.toLowerCase().includes("employee")) {
-            type = "employee";
-            manager = new Employee();
-        }
-
-        // 3. Render the Empty Form
-        if (type && manager) {
-            renderAddForm(type, manager);
-        }
-    }
+    
 });
 
 //add render
@@ -519,6 +494,153 @@ const schemas = {
 };
 
 
+// --- ADD FUNCTIONALITY ---
+// --- ADD FUNCTIONALITY --- (Event Listener)
 
+appRoot.addEventListener('click', (e) => {
+    // 1. Check if the clicked element is the "Add" button
+    if (e.target.classList.contains('btn-add')) {
+        
+        // 2. Identify Context based on the Page Title
+        // Example: "Students List" -> We need to create a Student
+        const pageTitle = document.querySelector('.content-header h2').innerText; 
+        
+        let type = "";
+        let manager = null;
+
+        if (pageTitle.toLowerCase().includes("student")) {
+            type = "student";
+            manager = new Student();
+        } else if (pageTitle.toLowerCase().includes("course")) {
+            type = "course";
+            manager = new Course();
+        } else if (pageTitle.toLowerCase().includes("instructor")) {
+            type = "instructor";
+            manager = new Instructor();
+        } else if (pageTitle.toLowerCase().includes("employee")) {
+            type = "employee";
+            manager = new Employee();
+        }
+
+        // 3. Render the Empty Form if we found a match
+        if (type && manager) {
+            renderAddForm(type, manager);
+        }
+    }
+});
+// --- CLIENT-SIDE PAGINATION STATE ---
+let currentPage = 1;
+const itemsPerPage = 5; 
+let currentData = [];  // Stores ALL 100% of the data
+let currentTitle = ""; // Stores "Students", "Courses", etc.
+
+
+// --- SIDEBAR LISTENERS ---
+
+studentbtn.addEventListener('click', async () => {
+    currentPage = 1; 
+    currentTitle = "Students"; // Remember we are in Students
+    
+    try {
+        let student = new Student();
+        // 1. Fetch EVERYTHING (No query params needed!)
+        currentData = await student.getStudentsWithCourseNames(); 
+        
+        // 2. Pass it to our new Slicer Function
+        renderPaginatedTable();
+        
+    } catch (error) { 
+        console.error(error); 
+        document.getElementById('app-root').innerHTML = '<div class="error">Failed to load data.</div>';
+    }
+});
+
+coursesbtn.addEventListener('click', async () => {
+    currentPage = 1;
+    currentTitle = "Courses";
+    
+    try {
+        let course = new Course();
+        currentData = await course.get(); // Fetch All
+        renderPaginatedTable();
+    } catch (error) { console.error(error); }
+});
+
+instructorsbtn.addEventListener('click', async () => {
+    currentPage = 1;
+    currentTitle = "Instructors";
+    
+    try {
+        let instructor = new Instructor();
+        currentData = await instructor.get(); // Fetch All
+        renderPaginatedTable();
+    } catch (error) { console.error(error); }
+});
+
+employeesbtn.addEventListener('click', async () => {
+    currentPage = 1;
+    currentTitle = "Employees";
+    
+    try {
+        let employee = new Employee();
+        currentData = await employee.get(); // Fetch All
+        renderPaginatedTable();
+    } catch (error) { console.error(error); }
+});
+
+homebtn.addEventListener('click', () => {
+    renderTable(0, "home");
+});
+
+
+// 1. The Logic Function: Cuts the data
+function renderPaginatedTable() {
+    // A. Calculate where to cut
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+
+    // B. Slice the array (e.g., Get items 0 to 5)
+    const paginatedData = currentData.slice(start, end);
+
+    // C. Render the table with just those few items
+    renderTable(paginatedData, currentTitle);
+
+    // D. Draw the buttons
+    renderClientPaginationControls();
+}
+
+// 2. The Buttons Function: Draws Next/Prev
+function renderClientPaginationControls() {
+    const appRoot = document.getElementById('app-root');
+    const totalItems = currentData.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+    // Create buttons HTML
+    const controls = document.createElement('div');
+    controls.className = 'pagination-controls';
+    controls.innerHTML = `
+        <button id="btn-prev" ${currentPage === 1 ? 'disabled' : ''}>⬅️ Previous</button>
+        <span class="page-info">Page ${currentPage} of ${totalPages}</span>
+        <button id="btn-next" ${currentPage === totalPages ? 'disabled' : ''}>Next ➡️</button>
+    `;
+
+    appRoot.appendChild(controls);
+
+    // --- BUTTON LISTENERS ---
+    
+    document.getElementById('btn-prev').addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderPaginatedTable(); // Re-slice the array
+        }
+    });
+
+    document.getElementById('btn-next').addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderPaginatedTable(); // Re-slice the array
+        }
+    });
+}
 
 

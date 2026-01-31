@@ -301,3 +301,66 @@ th { background-color: #2b3699; }
     border-radius: 5px;
     cursor: pointer;
 }
+/* --- Pagination Container --- */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;               /* Space between elements */
+    margin: 20px 0;          /* Vertical spacing */
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;      /* Rounded container */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    border: 1px solid #eee;
+}
+
+/* --- The Buttons --- */
+.pagination-controls button {
+    background-color: #ffffff;
+    color: #2b3699;          /* Theme Blue Text */
+    border: 2px solid #2b3699;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 50px;     /* Pill shape buttons */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth animation */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Hover Effect: Fill with Blue */
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #2b3699;
+    color: #ffffff;
+    transform: translateY(-2px); /* Slight lift up */
+    box-shadow: 0 4px 8px rgba(43, 54, 153, 0.2);
+}
+
+/* Active / Click Effect */
+.pagination-controls button:active:not(:disabled) {
+    transform: translateY(0);    /* Push down */
+}
+
+/* --- Disabled State (e.g. Page 1 Prev) --- */
+.pagination-controls button:disabled {
+    background-color: #f5f5f5;
+    color: #a0a0a0;
+    border-color: #e0e0e0;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- Page Info Text (e.g. Page 1 of 5) --- */
+.page-info {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+    background-color: #f8f9fa;
+    padding: 8px 15px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
