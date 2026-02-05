@@ -4,30 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Affairs Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f4;">
+<body class="login-page">
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+        <div class="floating-shape shape-5"></div>
+        <div class="grid-overlay"></div>
+    </div>
 
-    <div class="login-card" style="background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: center;">
-        <h2>🔐 Staff Login</h2>
-        
-        <form id="loginForm">
-            <div style="margin-bottom: 15px;">
-                <input type="email" id="email" placeholder="Email Address" required 
-                       style="padding: 10px; width: 100%; box-sizing: border-box;">
+    <!-- Login Container -->
+    <div class="login-container">
+        <!-- Left Panel - Branding -->
+        <div class="login-left">
+            <div class="brand-content">
+                <div class="brand-icon-wrapper">
+                    <div class="brand-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="icon-glow"></div>
+                </div>
+                <h1 class="brand-title">
+                    <span class="title-line">Student</span>
+                    <span class="title-line">Affairs</span>
+                    <span class="title-line accent">System</span>
+                </h1>
+                <p class="brand-tagline">Empowering education through intelligent management</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Access</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Availability</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Real-time Analytics</span>
+                    </div>
+                </div>
             </div>
-            <div style="margin-bottom: 15px;">
-                <input type="password" id="password" placeholder="Password" required 
-                       style="padding: 10px; width: 100%; box-sizing: border-box;">
+        </div>
+
+        <!-- Right Panel - Login Form -->
+        <div class="login-right">
+            <div class="login-card">
+                <div class="card-header">
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to access your dashboard</p>
+                </div>
+
+                <form id="loginForm" class="login-form">
+                    <div class="form-group-login">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i>
+                            Email Address
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email" placeholder="your.email@university.edu" required>
+                            <div class="input-border"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-login">
+                        <label for="password">
+                            <i class="fas fa-lock"></i>
+                            Password
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" placeholder="Enter your password" required>
+                            <div class="input-border"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="login-submit-btn">
+                        <span class="btn-text">Sign In</span>
+                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                        <div class="btn-bg"></div>
+                    </button>
+                </form>
+
+                <p id="errorMsg" class="error-message"></p>
+
+                <div class="login-footer">
+                    <div class="divider">
+                        <span>Authorized Access Only</span>
+                    </div>
+                </div>
             </div>
-            <button type="submit" 
-                    style="padding: 10px 20px; background-color: #2b3699; color: white; border: none; cursor: pointer; width: 100%;">
-                Login
-            </button>
-        </form>
-        
-        <p id="errorMsg" style="color: red; margin-top: 10px; display: none;"></p>
+        </div>
+    </div>
+
+    <!-- Page Transition Overlay -->
+    <div class="page-transition">
+        <div class="transition-layer"></div>
+        <div class="transition-layer"></div>
+        <div class="transition-layer"></div>
     </div>
 
     <script type="module" src="login.js"></script>
+    <script>
+        // Add page transition effect
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const transition = document.querySelector('.page-transition');
+            transition.classList.add('active');
+        });
+
+        // Animate elements on load
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
 </body>
 </html>

@@ -139,6 +139,13 @@
       "email": "zainab.t@iti.gov.eg",
       "password": "123",
       "role": "staff"
+    },
+    {
+      "id": "5454",
+      "name": "ali hassan",
+      "email": "Ali@gmail.com",
+      "password": "123456",
+      "role": "staff"
     }
   ],
   "instructors": [
@@ -410,6 +417,12 @@
       "name": "Project Management",
       "credits": 2,
       "instructorId": "120"
+    },
+    {
+      "id": "cf1c",
+      "name": ".net",
+      "credits": 3,
+      "instructorId": "101"
     }
   ],
   "students": [
@@ -422,18 +435,8 @@
       "enrollmentDate": "2023-09-15",
       "enrolledCourses": [
         "C-01",
-        "C-03"
-      ]
-    },
-    {
-      "id": "2024002",
-      "name": "Mohamed Hassan",
-      "email": "mohamed@gmail.com",
-      "phone": "0100000002",
-      "gpa": 3.2,
-      "enrollmentDate": "2023-09-16",
-      "enrolledCourses": [
-        "C-02"
+        "C-03",
+        "C-05"
       ]
     },
     {
@@ -446,18 +449,6 @@
       "enrolledCourses": [
         "C-01",
         "C-04"
-      ]
-    },
-    {
-      "id": "2024004",
-      "name": "Sara Ahmed",
-      "email": "sara.a@gmail.com",
-      "phone": "0100000004",
-      "gpa": 3.5,
-      "enrollmentDate": "2023-09-15",
-      "enrolledCourses": [
-        "C-05",
-        "C-06"
       ]
     },
     {
@@ -647,7 +638,26 @@
       "phone": "01094818910",
       "gpa": 3.5,
       "enrollmentDate": "2022-09-01",
-      "enrolledCourses": []
+      "enrolledCourses": [
+        "C-02",
+        "C-03",
+        "C-18",
+        "C-19"
+      ]
+    },
+    {
+      "id": "f83d",
+      "name": "Ahmed Kamel",
+      "email": "ahmed@gmail.com",
+      "phone": "011554845",
+      "gpa": "2.2",
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-17",
+        "C-19",
+        "C-20",
+        "cf1c"
+      ]
     }
   ]
 }
