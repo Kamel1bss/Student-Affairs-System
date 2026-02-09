@@ -1,0 +1,663 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "name": "Admin User",
+      "email": "admin@iti.gov.eg",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "name": "Sarah Staff",
+      "email": "sarah@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "3",
+      "name": "Ahmed Mansour",
+      "email": "ahmed.m@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "4",
+      "name": "Laila Hassan",
+      "email": "laila.h@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "5",
+      "name": "Omar Fathy",
+      "email": "omar.f@iti.gov.eg",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "6",
+      "name": "Mona Zaki",
+      "email": "mona.z@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "7",
+      "name": "Hassan Ibrahim",
+      "email": "hassan.i@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "8",
+      "name": "Dina Mahmoud",
+      "email": "dina.m@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "9",
+      "name": "Kareem Adel",
+      "email": "kareem.a@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "10",
+      "name": "Yasmine Ali",
+      "email": "yasmine.a@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "11",
+      "name": "Mostafa Saad",
+      "email": "mostafa.s@iti.gov.eg",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "12",
+      "name": "Nouran Ehab",
+      "email": "nouran.e@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "13",
+      "name": "Tarek Hegazi",
+      "email": "tarek.h@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "14",
+      "name": "Salma Bakr",
+      "email": "salma.b@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "15",
+      "name": "Hany Ramzy",
+      "email": "hany.r@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "16",
+      "name": "Ghada Abdel",
+      "email": "ghada.a@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "17",
+      "name": "Sherif Nour",
+      "email": "sherif.n@iti.gov.eg",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "18",
+      "name": "Amira Fawzy",
+      "email": "amira.f@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "19",
+      "name": "Ramy Gamal",
+      "email": "ramy.g@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "20",
+      "name": "Zainab Taha",
+      "email": "zainab.t@iti.gov.eg",
+      "password": "123",
+      "role": "staff"
+    },
+    {
+      "id": "5454",
+      "name": "ali hassan",
+      "email": "Ali@gmail.com",
+      "password": "123456",
+      "role": "staff"
+    }
+  ],
+  "instructors": [
+    {
+      "id": "101",
+      "name": "Dr. Ahmed Ali",
+      "email": "ahmed.ali@univ.edu",
+      "phone": "01012345678",
+      "department": "Computer Science"
+    },
+    {
+      "id": "102",
+      "name": "Dr. Mona Osman",
+      "email": "mona.osman@univ.edu",
+      "phone": "01298765432",
+      "department": "Information Systems"
+    },
+    {
+      "id": "103",
+      "name": "Dr. Khaled Youssef",
+      "email": "khaled.y@univ.edu",
+      "phone": "01122334455",
+      "department": "Engineering"
+    },
+    {
+      "id": "104",
+      "name": "Dr. Eman Salem",
+      "email": "eman.s@univ.edu",
+      "phone": "01511223344",
+      "department": "Computer Science"
+    },
+    {
+      "id": "105",
+      "name": "Dr. Yasser Galal",
+      "email": "yasser.g@univ.edu",
+      "phone": "01055667788",
+      "department": "Mathematics"
+    },
+    {
+      "id": "106",
+      "name": "Dr. Fatma Reda",
+      "email": "fatma.r@univ.edu",
+      "phone": "01288776655",
+      "department": "Engineering"
+    },
+    {
+      "id": "107",
+      "name": "Dr. Mahmoud Eid",
+      "email": "mahmoud.e@univ.edu",
+      "phone": "01199887766",
+      "department": "Information Systems"
+    },
+    {
+      "id": "108",
+      "name": "Dr. Heba Khalil",
+      "email": "heba.k@univ.edu",
+      "phone": "01022337744",
+      "department": "Computer Science"
+    },
+    {
+      "id": "109",
+      "name": "Dr. Osama Hamdy",
+      "email": "osama.h@univ.edu",
+      "phone": "01244556677",
+      "department": "Software Engineering"
+    },
+    {
+      "id": "110",
+      "name": "Dr. Mariam Soliman",
+      "email": "mariam.s@univ.edu",
+      "phone": "01133445588",
+      "department": "Data Science"
+    },
+    {
+      "id": "111",
+      "name": "Dr. Waleed Sayed",
+      "email": "waleed.s@univ.edu",
+      "phone": "01577889900",
+      "department": "Cyber Security"
+    },
+    {
+      "id": "112",
+      "name": "Dr. Noha Bayoumi",
+      "email": "noha.b@univ.edu",
+      "phone": "01088990011",
+      "department": "Artificial Intelligence"
+    },
+    {
+      "id": "113",
+      "name": "Dr. Sameh Refaat",
+      "email": "sameh.r@univ.edu",
+      "phone": "01200112233",
+      "department": "Computer Science"
+    },
+    {
+      "id": "114",
+      "name": "Dr. Rania Magdy",
+      "email": "rania.m@univ.edu",
+      "phone": "01144552211",
+      "department": "Information Systems"
+    },
+    {
+      "id": "115",
+      "name": "Dr. Hazem Kamal",
+      "email": "hazem.k@univ.edu",
+      "phone": "01066778811",
+      "department": "Engineering"
+    },
+    {
+      "id": "116",
+      "name": "Dr. Ola Fawzy",
+      "email": "ola.f@univ.edu",
+      "phone": "01277665544",
+      "department": "Mathematics"
+    },
+    {
+      "id": "117",
+      "name": "Dr. Bassam Zaki",
+      "email": "bassam.z@univ.edu",
+      "phone": "01111222333",
+      "department": "Computer Science"
+    },
+    {
+      "id": "118",
+      "name": "Dr. Maya Hegazi",
+      "email": "maya.h@univ.edu",
+      "phone": "01544332211",
+      "department": "Software Engineering"
+    },
+    {
+      "id": "119",
+      "name": "Dr. Amr Diab",
+      "email": "amr.d@univ.edu",
+      "phone": "01099881122",
+      "department": "Engineering"
+    },
+    {
+      "id": "120",
+      "name": "Dr. Layla Mourad",
+      "email": "layla.m@univ.edu",
+      "phone": "01233441122",
+      "department": "Information Systems"
+    },
+    {
+      "id": "650d",
+      "name": "Dr.Omar Nader",
+      "email": "omar@iti.com",
+      "phone": "01228980413",
+      "department": "mechatronics"
+    }
+  ],
+  "courses": [
+    {
+      "id": "C-01",
+      "name": "Advanced JavaScript (ES6)",
+      "credits": 3,
+      "instructorId": "101"
+    },
+    {
+      "id": "C-02",
+      "name": "Database Systems",
+      "credits": 4,
+      "instructorId": "102"
+    },
+    {
+      "id": "C-03",
+      "name": "Data Structures & Algorithms",
+      "credits": 3,
+      "instructorId": "101"
+    },
+    {
+      "id": "C-04",
+      "name": "System Analysis",
+      "credits": 2,
+      "instructorId": "102"
+    },
+    {
+      "id": "C-05",
+      "name": "Operating Systems",
+      "credits": 3,
+      "instructorId": "104"
+    },
+    {
+      "id": "C-06",
+      "name": "Computer Networks",
+      "credits": 3,
+      "instructorId": "111"
+    },
+    {
+      "id": "C-07",
+      "name": "Web Development (Node.js)",
+      "credits": 4,
+      "instructorId": "109"
+    },
+    {
+      "id": "C-08",
+      "name": "Machine Learning",
+      "credits": 3,
+      "instructorId": "112"
+    },
+    {
+      "id": "C-09",
+      "name": "Digital Logic",
+      "credits": 3,
+      "instructorId": "103"
+    },
+    {
+      "id": "C-10",
+      "name": "Calculus II",
+      "credits": 3,
+      "instructorId": "105"
+    },
+    {
+      "id": "C-11",
+      "name": "Software Testing",
+      "credits": 2,
+      "instructorId": "118"
+    },
+    {
+      "id": "C-12",
+      "name": "Cloud Computing",
+      "credits": 3,
+      "instructorId": "111"
+    },
+    {
+      "id": "C-13",
+      "name": "Human Computer Interaction",
+      "credits": 2,
+      "instructorId": "107"
+    },
+    {
+      "id": "C-14",
+      "name": "Artificial Intelligence",
+      "credits": 4,
+      "instructorId": "112"
+    },
+    {
+      "id": "C-15",
+      "name": "Probability & Statistics",
+      "credits": 3,
+      "instructorId": "116"
+    },
+    {
+      "id": "C-16",
+      "name": "Object Oriented Programming",
+      "credits": 3,
+      "instructorId": "117"
+    },
+    {
+      "id": "C-17",
+      "name": "Mobile App Development",
+      "credits": 4,
+      "instructorId": "113"
+    },
+    {
+      "id": "C-18",
+      "name": "Data Mining",
+      "credits": 3,
+      "instructorId": "110"
+    },
+    {
+      "id": "C-19",
+      "name": "Distributed Systems",
+      "credits": 3,
+      "instructorId": "104"
+    },
+    {
+      "id": "C-20",
+      "name": "Project Management",
+      "credits": 2,
+      "instructorId": "120"
+    },
+    {
+      "id": "cf1c",
+      "name": ".net",
+      "credits": 3,
+      "instructorId": "101"
+    }
+  ],
+  "students": [
+    {
+      "id": "2024001",
+      "name": "Ali Gamal",
+      "email": "Aligamal5@gmail.com",
+      "phone": "01001511012",
+      "gpa": "3.78",
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-01",
+        "C-03",
+        "C-05"
+      ]
+    },
+    {
+      "id": "2024003",
+      "name": "Nour El-Din",
+      "email": "nour@gmail.com",
+      "phone": "0100000003",
+      "gpa": 3.9,
+      "enrollmentDate": "2024-01-10",
+      "enrolledCourses": [
+        "C-01",
+        "C-04"
+      ]
+    },
+    {
+      "id": "2024005",
+      "name": "Karim Walid",
+      "email": "karim.w@gmail.com",
+      "phone": "0100000005",
+      "gpa": 2.8,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-03",
+        "C-07"
+      ]
+    },
+    {
+      "id": "2024006",
+      "name": "Hanan Emad",
+      "email": "hanan.e@gmail.com",
+      "phone": "0100000006",
+      "gpa": 3.1,
+      "enrollmentDate": "2024-01-10",
+      "enrolledCourses": [
+        "C-02",
+        "C-11"
+      ]
+    },
+    {
+      "id": "2024007",
+      "name": "Omar Khaled",
+      "email": "omar.k@gmail.com",
+      "phone": "0100000007",
+      "gpa": 3.4,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-08",
+        "C-14"
+      ]
+    },
+    {
+      "id": "2024008",
+      "name": "Dina Sabry",
+      "email": "dina.s@gmail.com",
+      "phone": "0100000008",
+      "gpa": 3.95,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-16",
+        "C-17"
+      ]
+    },
+    {
+      "id": "2024009",
+      "name": "Mostafa Mahmoud",
+      "email": "mostafa.m@gmail.com",
+      "phone": "0100000009",
+      "gpa": 2.5,
+      "enrollmentDate": "2024-01-10",
+      "enrolledCourses": [
+        "C-10",
+        "C-15"
+      ]
+    },
+    {
+      "id": "2024010",
+      "name": "Laila Sherif",
+      "email": "laila.s@gmail.com",
+      "phone": "0100000010",
+      "gpa": 3.6,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-01",
+        "C-09"
+      ]
+    },
+    {
+      "id": "2024011",
+      "name": "Tamer Hosny",
+      "email": "tamer.h@gmail.com",
+      "phone": "0100000011",
+      "gpa": 2.9,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-12",
+        "C-13"
+      ]
+    },
+    {
+      "id": "2024012",
+      "name": "Nada Yasser",
+      "email": "nada.y@gmail.com",
+      "phone": "0100000012",
+      "gpa": 3.8,
+      "enrollmentDate": "2024-01-10",
+      "enrolledCourses": [
+        "C-04",
+        "C-18"
+      ]
+    },
+    {
+      "id": "2024013",
+      "name": "Ibrahim Adel",
+      "email": "ibrahim.a@gmail.com",
+      "phone": "0100000013",
+      "gpa": 3.3,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-06",
+        "C-19"
+      ]
+    },
+    {
+      "id": "2024014",
+      "name": "Maya Fouad",
+      "email": "maya.f@gmail.com",
+      "phone": "0100000014",
+      "gpa": 3.7,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-07",
+        "C-20"
+      ]
+    },
+    {
+      "id": "2024015",
+      "name": "Youssef Aly",
+      "email": "youssef.a@gmail.com",
+      "phone": "0100000015",
+      "gpa": 2.2,
+      "enrollmentDate": "2024-01-10",
+      "enrolledCourses": [
+        "C-02"
+      ]
+    },
+    {
+      "id": "2024016",
+      "name": "Farida Osman",
+      "email": "farida.o@gmail.com",
+      "phone": "0100000016",
+      "gpa": 4,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-01",
+        "C-08",
+        "C-14"
+      ]
+    },
+    {
+      "id": "2024017",
+      "name": "Ahmed Samy",
+      "email": "ahmed.s@gmail.com",
+      "phone": "0100000017",
+      "gpa": 3,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-03",
+        "C-16"
+      ]
+    },
+    {
+      "id": "2024019",
+      "name": "Hany Shaker",
+      "email": "hany.s@gmail.com",
+      "phone": "0100000019",
+      "gpa": 2.7,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-09",
+        "C-10"
+      ]
+    },
+    {
+      "id": "2024020",
+      "name": "Ziad Tarek",
+      "email": "ziad.t@gmail.com",
+      "phone": "0100000020",
+      "gpa": 3.5,
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-05",
+        "C-12"
+      ]
+    },
+    {
+      "id": "aca7",
+      "name": "Ahmed Hisham",
+      "email": "ahmedhisham@gmail.com",
+      "phone": "01094818910",
+      "gpa": 3.5,
+      "enrollmentDate": "2022-09-01",
+      "enrolledCourses": [
+        "C-02",
+        "C-03",
+        "C-18",
+        "C-19"
+      ]
+    },
+    {
+      "id": "f83d",
+      "name": "Ahmed Kamel",
+      "email": "ahmed@gmail.com",
+      "phone": "011554845",
+      "gpa": "2.2",
+      "enrollmentDate": "2023-09-15",
+      "enrolledCourses": [
+        "C-17",
+        "C-19",
+        "C-20",
+        "cf1c"
+      ]
+    }
+  ]
+}
